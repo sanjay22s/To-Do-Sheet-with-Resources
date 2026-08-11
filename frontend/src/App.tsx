@@ -117,12 +117,17 @@ export default function App() {
   // Initial cloud fetch
   useEffect(() => {
     if (cloudCreds && !isInitialCloudLoad) {
-      fetchFromCloud(cloudCreds).then((cloudData) => {
-        if (cloudData) {
-          setRoadmap(normalizeRoadmap(cloudData));
-        }
-        setIsInitialCloudLoad(true);
-      });
+      fetchFromCloud(cloudCreds)
+        .then((cloudData) => {
+          if (cloudData) {
+            setRoadmap(normalizeRoadmap(cloudData));
+          }
+          setIsInitialCloudLoad(true);
+        })
+        .catch((err) => {
+          console.error("Initial cloud load failed:", err);
+          setIsInitialCloudLoad(true);
+        });
     } else if (!cloudCreds) {
       setIsInitialCloudLoad(true);
     }
@@ -329,18 +334,30 @@ export default function App() {
         onClose={() => setIsCloudModalOpen(false)}
         currentCreds={cloudCreds}
         onConnect={async (creds) => {
-          setCloudCreds(creds);
-          // Attempt immediate sync to verify credentials
-          const data = await fetchFromCloud(creds);
-          if (data) {
-            setRoadmap(normalizeRoadmap(data));
-          } else {
-            // If no data exists, push current roadmap
-            await saveToCloud(creds, roadmap);
+          try {
+            // Attempt immediate sync to verify credentials FIRST
+            const data = await fetchFromCloud(creds);
+            if (data) {
+              setRoadmap(normalizeRoadmap(data));
+            } else {
+              // If no data exists, push current roadmap
+              const success = await saveToCloud(creds, roadmap);
+              if (!success) {
+                return false;
+              }
+            }
+            // Only set credentials if connection succeeded and we read/wrote successfully
+            setCloudCreds(creds);
+            return true;
+          } catch (e) {
+            console.error("Cloud connection failed verification:", e);
+            return false;
           }
-          return true; // Simplified validation
         }}
-        onDisconnect={() => setCloudCreds(null)}
+        onDisconnect={() => {
+          setCloudCreds(null);
+          setIsInitialCloudLoad(false);
+        }}
       />
     </div>
   );

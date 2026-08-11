@@ -10,7 +10,16 @@ export interface CloudCredentials {
 let supabaseInstance: SupabaseClient | null = null;
 
 export function initSupabase(url: string, apiKey: string) {
-  supabaseInstance = createClient(url, apiKey);
+  // Normalize URL to remove trailing slashes or subpaths like /rest/v1/
+  let normalizedUrl = url.trim();
+  if (normalizedUrl.endsWith('/')) {
+    normalizedUrl = normalizedUrl.slice(0, -1);
+  }
+  if (normalizedUrl.endsWith('/rest/v1')) {
+    normalizedUrl = normalizedUrl.slice(0, -8);
+  }
+  
+  supabaseInstance = createClient(normalizedUrl, apiKey.trim());
   return supabaseInstance;
 }
 
@@ -19,11 +28,15 @@ export async function fetchFromCloud(creds: CloudCredentials): Promise<RoadmapRe
   const { data, error } = await supabase
     .from('cloud_saves')
     .select('roadmap_data')
-    .eq('secret_key', creds.secretKey)
-    .single();
+    .eq('secret_key', creds.secretKey.trim())
+    .maybeSingle();
 
-  if (error || !data) {
+  if (error) {
     console.error('Error fetching from cloud:', error);
+    throw new Error(error.message || 'Failed to fetch from cloud');
+  }
+
+  if (!data) {
     return null;
   }
 
@@ -31,18 +44,24 @@ export async function fetchFromCloud(creds: CloudCredentials): Promise<RoadmapRe
 }
 
 export async function saveToCloud(creds: CloudCredentials, roadmapData: RoadmapResponse): Promise<boolean> {
-  const supabase = supabaseInstance || initSupabase(creds.url, creds.apiKey);
-  
-  const { error } = await supabase
-    .from('cloud_saves')
-    .upsert(
-      { secret_key: creds.secretKey, roadmap_data: roadmapData },
-      { onConflict: 'secret_key' }
-    );
+  try {
+    const supabase = supabaseInstance || initSupabase(creds.url, creds.apiKey);
+    
+    const { error } = await supabase
+      .from('cloud_saves')
+      .upsert(
+        { secret_key: creds.secretKey.trim(), roadmap_data: roadmapData },
+        { onConflict: 'secret_key' }
+      );
 
-  if (error) {
-    console.error('Error saving to cloud:', error);
+    if (error) {
+      console.error('Error saving to cloud:', error);
+      return false;
+    }
+    return true;
+  } catch (err) {
+    console.error('Exception saving to cloud:', err);
     return false;
   }
-  return true;
 }
+
