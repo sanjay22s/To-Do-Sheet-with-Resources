@@ -648,6 +648,165 @@ const queueProblems = [
   },
 ];
 
+const twoPointersProblems = [
+  {
+    title: "Valid Palindrome",
+    difficulty: "Easy",
+    leetcodeUrl: "https://leetcode.com/problems/valid-palindrome/",
+  },
+  {
+    title: "Two Sum II - Input Array Is Sorted",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/",
+  },
+  {
+    title: "Reverse String",
+    difficulty: "Easy",
+    leetcodeUrl: "https://leetcode.com/problems/reverse-string/",
+  },
+  {
+    title: "Move Zeroes",
+    difficulty: "Easy",
+    leetcodeUrl: "https://leetcode.com/problems/move-zeroes/",
+  },
+  {
+    title: "Container With Most Water",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/container-with-most-water/",
+  },
+  {
+    title: "3Sum",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/3sum/",
+  },
+  {
+    title: "Trapping Rain Water",
+    difficulty: "Hard",
+    leetcodeUrl: "https://leetcode.com/problems/trapping-rain-water/",
+  },
+  {
+    title: "Remove Duplicates from Sorted Array",
+    difficulty: "Easy",
+    leetcodeUrl: "https://leetcode.com/problems/remove-duplicates-from-sorted-array/",
+  },
+  {
+    title: "Squares of a Sorted Array",
+    difficulty: "Easy",
+    leetcodeUrl: "https://leetcode.com/problems/squares-of-a-sorted-array/",
+  },
+  {
+    title: "Is Subsequence",
+    difficulty: "Easy",
+    leetcodeUrl: "https://leetcode.com/problems/is-subsequence/",
+  },
+];
+
+const slidingWindowProblems = [
+  {
+    title: "Longest Substring Without Repeating Characters",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/longest-substring-without-repeating-characters/",
+  },
+  {
+    title: "Maximum Average Subarray I",
+    difficulty: "Easy",
+    leetcodeUrl: "https://leetcode.com/problems/maximum-average-subarray-i/",
+  },
+  {
+    title: "Minimum Size Subarray Sum",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/minimum-size-subarray-sum/",
+  },
+  {
+    title: "Longest Repeating Character Replacement",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/longest-repeating-character-replacement/",
+  },
+  {
+    title: "Permutation in String",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/permutation-in-string/",
+  },
+  {
+    title: "Minimum Window Substring",
+    difficulty: "Hard",
+    leetcodeUrl: "https://leetcode.com/problems/minimum-window-substring/",
+  },
+  {
+    title: "Max Consecutive Ones III",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/max-consecutive-ones-iii/",
+  },
+  {
+    title: "Fruit Into Baskets",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/fruit-into-baskets/",
+  },
+  {
+    title: "Maximum Number of Vowels in a Substring of Given Length",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/maximum-number-of-vowels-in-a-substring-of-given-length/",
+  },
+  {
+    title: "Find All Anagrams in a String",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/find-all-anagrams-in-a-string/",
+  },
+];
+
+const hashingProblems = [
+  {
+    title: "Two Sum",
+    difficulty: "Easy",
+    leetcodeUrl: "https://leetcode.com/problems/two-sum/",
+  },
+  {
+    title: "Group Anagrams",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/group-anagrams/",
+  },
+  {
+    title: "Valid Anagram",
+    difficulty: "Easy",
+    leetcodeUrl: "https://leetcode.com/problems/valid-anagram/",
+  },
+  {
+    title: "Longest Consecutive Sequence",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/longest-consecutive-sequence/",
+  },
+  {
+    title: "Top K Frequent Elements",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/top-k-frequent-elements/",
+  },
+  {
+    title: "Valid Sudoku",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/valid-sudoku/",
+  },
+  {
+    title: "Isomorphic Strings",
+    difficulty: "Easy",
+    leetcodeUrl: "https://leetcode.com/problems/isomorphic-strings/",
+  },
+  {
+    title: "Ransom Note",
+    difficulty: "Easy",
+    leetcodeUrl: "https://leetcode.com/problems/ransom-note/",
+  },
+  {
+    title: "Contains Duplicate II",
+    difficulty: "Easy",
+    leetcodeUrl: "https://leetcode.com/problems/contains-duplicate-ii/",
+  },
+  {
+    title: "Sort Characters By Frequency",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/sort-characters-by-frequency/",
+  },
+];
+
 const dsaProblemSeeds: Record<string, typeof arraysProblems> = {
   Arrays: arraysProblems,
   "2D Arrays": twoDArrayProblems,
@@ -661,6 +820,9 @@ const dsaProblemSeeds: Record<string, typeof arraysProblems> = {
   "Binary Search": binarySearchProblems,
   "Linked List": linkedListProblems,
   "Queue / Deque": queueProblems,
+  "Two Pointers": twoPointersProblems,
+  "Sliding Window": slidingWindowProblems,
+  Hashing: hashingProblems,
 };
 
 const sections = [
