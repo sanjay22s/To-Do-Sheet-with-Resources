@@ -350,6 +350,59 @@ const greedyProblems = [
   },
 ];
 
+const dpProblems = [
+  {
+    title: "Climbing Stairs",
+    difficulty: "Easy",
+    leetcodeUrl: "https://leetcode.com/problems/climbing-stairs/",
+  },
+  {
+    title: "House Robber",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/house-robber/",
+  },
+  {
+    title: "Coin Change",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/coin-change/",
+  },
+  {
+    title: "Longest Increasing Subsequence",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/longest-increasing-subsequence/",
+  },
+  {
+    title: "Longest Common Subsequence",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/longest-common-subsequence/",
+  },
+  {
+    title: "Word Break",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/word-break/",
+  },
+  {
+    title: "Partition Equal Subset Sum",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/partition-equal-subset-sum/",
+  },
+  {
+    title: "Unique Paths",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/unique-paths/",
+  },
+  {
+    title: "Coin Change II",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/coin-change-ii/",
+  },
+  {
+    title: "Longest Palindromic Substring",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/longest-palindromic-substring/",
+  },
+];
+
 const dsaProblemSeeds: Record<string, typeof arraysProblems> = {
   Arrays: arraysProblems,
   "2D Arrays": twoDArrayProblems,
@@ -357,6 +410,7 @@ const dsaProblemSeeds: Record<string, typeof arraysProblems> = {
   Trees: treesProblems,
   Graphs: graphsProblems,
   Greedy: greedyProblems,
+  "Dynamic Programming": dpProblems,
 };
 
 const sections = [
