@@ -557,6 +557,59 @@ const binarySearchProblems = [
   },
 ];
 
+const linkedListProblems = [
+  {
+    title: "Linked List Cycle",
+    difficulty: "Easy",
+    leetcodeUrl: "https://leetcode.com/problems/linked-list-cycle/",
+  },
+  {
+    title: "Linked List Cycle II",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/linked-list-cycle-ii/",
+  },
+  {
+    title: "Middle of the Linked List",
+    difficulty: "Easy",
+    leetcodeUrl: "https://leetcode.com/problems/middle-of-the-linked-list/",
+  },
+  {
+    title: "Remove Nth Node From End of List",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/remove-nth-node-from-end-of-list/",
+  },
+  {
+    title: "Happy Number",
+    difficulty: "Easy",
+    leetcodeUrl: "https://leetcode.com/problems/happy-number/",
+  },
+  {
+    title: "Palindrome Linked List",
+    difficulty: "Easy",
+    leetcodeUrl: "https://leetcode.com/problems/palindrome-linked-list/",
+  },
+  {
+    title: "Find the Duplicate Number",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/find-the-duplicate-number/",
+  },
+  {
+    title: "Reorder List",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/reorder-list/",
+  },
+  {
+    title: "Rotate List",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/rotate-list/",
+  },
+  {
+    title: "Sort List",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/sort-list/",
+  },
+];
+
 const dsaProblemSeeds: Record<string, typeof arraysProblems> = {
   Arrays: arraysProblems,
   "2D Arrays": twoDArrayProblems,
@@ -568,6 +621,7 @@ const dsaProblemSeeds: Record<string, typeof arraysProblems> = {
   "Recursion / Backtracking": backtrackingProblems,
   Stack: stackProblems,
   "Binary Search": binarySearchProblems,
+  "Linked List": linkedListProblems,
 };
 
 const sections = [
