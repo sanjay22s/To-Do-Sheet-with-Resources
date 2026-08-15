@@ -1564,7 +1564,7 @@ function ResourceNode({
   onDelete: (id: number) => void;
   onSave: (resource: Omit<PlacementResource, "id"> & { id?: number }) => void;
 }) {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
 
   function rename() {
     const title = window.prompt("Rename resource", resource.title);
