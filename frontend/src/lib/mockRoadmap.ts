@@ -297,12 +297,66 @@ const graphsProblems = [
   },
 ];
 
+const greedyProblems = [
+  {
+    title: "Assign Cookies",
+    difficulty: "Easy",
+    leetcodeUrl: "https://leetcode.com/problems/assign-cookies/",
+  },
+  {
+    title: "Jump Game",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/jump-game/",
+  },
+  {
+    title: "Jump Game II",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/jump-game-ii/",
+  },
+  {
+    title: "Gas Station",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/gas-station/",
+  },
+  {
+    title: "Partition Labels",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/partition-labels/",
+  },
+  {
+    title: "Non-overlapping Intervals",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/non-overlapping-intervals/",
+  },
+  {
+    title: "Queue Reconstruction by Height",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/queue-reconstruction-by-height/",
+  },
+  {
+    title: "Best Time to Buy and Sell Stock II",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/",
+  },
+  {
+    title: "Maximum Length of Pair Chain",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/maximum-length-of-pair-chain/",
+  },
+  {
+    title: "Maximum Subarray",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/maximum-subarray/",
+  },
+];
+
 const dsaProblemSeeds: Record<string, typeof arraysProblems> = {
   Arrays: arraysProblems,
   "2D Arrays": twoDArrayProblems,
   "Heap / Priority Queue": heapProblems,
   Trees: treesProblems,
   Graphs: graphsProblems,
+  Greedy: greedyProblems,
 };
 
 const sections = [
