@@ -610,6 +610,44 @@ const linkedListProblems = [
   },
 ];
 
+const queueProblems = [
+  {
+    title: "Implement Stack using Queues",
+    difficulty: "Easy",
+    leetcodeUrl: "https://leetcode.com/problems/implement-stack-using-queues/",
+  },
+  {
+    title: "Number of Recent Calls",
+    difficulty: "Easy",
+    leetcodeUrl: "https://leetcode.com/problems/number-of-recent-calls/",
+  },
+  {
+    title: "Number of Students Unable to Eat Lunch",
+    difficulty: "Easy",
+    leetcodeUrl: "https://leetcode.com/problems/number-of-students-unable-to-eat-lunch/",
+  },
+  {
+    title: "Dota2 Senate",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/dota2-senate/",
+  },
+  {
+    title: "Snakes and Ladders",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/snakes-and-ladders/",
+  },
+  {
+    title: "Open the Lock",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/open-the-lock/",
+  },
+  {
+    title: "Sliding Window Maximum",
+    difficulty: "Hard",
+    leetcodeUrl: "https://leetcode.com/problems/sliding-window-maximum/",
+  },
+];
+
 const dsaProblemSeeds: Record<string, typeof arraysProblems> = {
   Arrays: arraysProblems,
   "2D Arrays": twoDArrayProblems,
@@ -622,6 +660,7 @@ const dsaProblemSeeds: Record<string, typeof arraysProblems> = {
   Stack: stackProblems,
   "Binary Search": binarySearchProblems,
   "Linked List": linkedListProblems,
+  "Queue / Deque": queueProblems,
 };
 
 const sections = [
