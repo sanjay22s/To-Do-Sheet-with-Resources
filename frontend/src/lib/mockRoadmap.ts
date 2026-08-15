@@ -509,6 +509,54 @@ const stackProblems = [
   },
 ];
 
+const binarySearchProblems = [
+  {
+    title: "Binary Search",
+    difficulty: "Easy",
+    leetcodeUrl: "https://leetcode.com/problems/binary-search/",
+  },
+  {
+    title: "Search Insert Position",
+    difficulty: "Easy",
+    leetcodeUrl: "https://leetcode.com/problems/search-insert-position/",
+  },
+  {
+    title: "Sqrt(x)",
+    difficulty: "Easy",
+    leetcodeUrl: "https://leetcode.com/problems/sqrtx/",
+  },
+  {
+    title: "First Bad Version",
+    difficulty: "Easy",
+    leetcodeUrl: "https://leetcode.com/problems/first-bad-version/",
+  },
+  {
+    title: "Search in Rotated Sorted Array",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/search-in-rotated-sorted-array/",
+  },
+  {
+    title: "Find Minimum in Rotated Sorted Array",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/",
+  },
+  {
+    title: "Koko Eating Bananas",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/koko-eating-bananas/",
+  },
+  {
+    title: "Capacity To Ship Packages Within D Days",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/",
+  },
+  {
+    title: "Single Element in a Sorted Array",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/single-element-in-a-sorted-array/",
+  },
+];
+
 const dsaProblemSeeds: Record<string, typeof arraysProblems> = {
   Arrays: arraysProblems,
   "2D Arrays": twoDArrayProblems,
@@ -519,6 +567,7 @@ const dsaProblemSeeds: Record<string, typeof arraysProblems> = {
   "Dynamic Programming": dpProblems,
   "Recursion / Backtracking": backtrackingProblems,
   Stack: stackProblems,
+  "Binary Search": binarySearchProblems,
 };
 
 const sections = [
