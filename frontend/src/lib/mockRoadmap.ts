@@ -244,11 +244,65 @@ const treesProblems = [
   },
 ];
 
+const graphsProblems = [
+  {
+    title: "Number of Islands",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/number-of-islands/",
+  },
+  {
+    title: "Flood Fill",
+    difficulty: "Easy",
+    leetcodeUrl: "https://leetcode.com/problems/flood-fill/",
+  },
+  {
+    title: "Max Area of Island",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/max-area-of-island/",
+  },
+  {
+    title: "Rotting Oranges",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/rotting-oranges/",
+  },
+  {
+    title: "Course Schedule",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/course-schedule/",
+  },
+  {
+    title: "Course Schedule II",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/course-schedule-ii/",
+  },
+  {
+    title: "Clone Graph",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/clone-graph/",
+  },
+  {
+    title: "Number of Provinces",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/number-of-provinces/",
+  },
+  {
+    title: "Pacific Atlantic Water Flow",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/pacific-atlantic-water-flow/",
+  },
+  {
+    title: "Network Delay Time",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/network-delay-time/",
+  },
+];
+
 const dsaProblemSeeds: Record<string, typeof arraysProblems> = {
   Arrays: arraysProblems,
   "2D Arrays": twoDArrayProblems,
   "Heap / Priority Queue": heapProblems,
   Trees: treesProblems,
+  Graphs: graphsProblems,
 };
 
 const sections = [
