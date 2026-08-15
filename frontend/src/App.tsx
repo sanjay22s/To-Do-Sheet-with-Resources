@@ -1545,6 +1545,132 @@ function ResourcesSection({
   );
 }
 
+function ResourceNode({
+  resource,
+  resources,
+  depth,
+  onAddFile,
+  onAddFolderUpload,
+  onAddFolder,
+  onDelete,
+  onSave,
+}: {
+  resource: PlacementResource;
+  resources: PlacementResource[];
+  depth: number;
+  onAddFile: (parentId: number | null) => void;
+  onAddFolderUpload: (parentId: number | null) => void;
+  onAddFolder: (parentId: number | null) => void;
+  onDelete: (id: number) => void;
+  onSave: (resource: Omit<PlacementResource, "id"> & { id?: number }) => void;
+}) {
+  const [isOpen, setIsOpen] = useState(true);
+
+  function rename() {
+    const title = window.prompt("Rename resource", resource.title);
+    if (title?.trim()) {
+      onSave({ ...resource, title: title.trim() });
+    }
+  }
+
+  return (
+    <div className="space-y-3">
+      <div
+        className="rounded-lg border border-white/10 bg-panel p-4"
+        style={{ marginLeft: `${Math.min(depth * 24, 96)}px` }}
+      >
+        <div className="flex items-start justify-between gap-3">
+          <div className="flex min-w-0 items-center gap-3">
+            {resource.type === "FOLDER" && (
+              <button
+                className="flex items-center text-slate-400 hover:text-white transition"
+                onClick={() => setIsOpen(!isOpen)}
+                aria-label={isOpen ? "Collapse folder" : "Expand folder"}
+              >
+                {isOpen ? <ChevronDown size={18} /> : <ChevronRight size={18} />}
+              </button>
+            )}
+
+            {resource.type === "FOLDER" ? (
+              <Folder
+                className="text-amber cursor-pointer"
+                size={18}
+                onClick={() => setIsOpen(!isOpen)}
+              />
+            ) : (
+              <FileText className="text-mint" size={18} />
+            )}
+
+            <h3
+              className={`min-w-0 break-words font-semibold text-white ${
+                resource.type === "FOLDER" ? "cursor-pointer hover:text-mint transition" : ""
+              }`}
+              onClick={() => {
+                if (resource.type === "FOLDER") {
+                  setIsOpen(!isOpen);
+                }
+              }}
+            >
+              {resource.title}
+            </h3>
+          </div>
+          <div className="flex shrink-0 flex-wrap justify-end gap-2">
+            {resource.type === "FOLDER" && (
+              <>
+                <IconButton
+                  label="Add file in folder"
+                  onClick={() => onAddFile(resource.id)}
+                >
+                  <Plus size={17} />
+                </IconButton>
+                <IconButton
+                  label="Upload folder inside"
+                  onClick={() => onAddFolderUpload(resource.id)}
+                >
+                  <Folder size={17} />
+                </IconButton>
+                <IconButton
+                  label="New folder inside"
+                  onClick={() => onAddFolder(resource.id)}
+                >
+                  <Folder size={17} />
+                </IconButton>
+              </>
+            )}
+            {resource.type === "RESOURCE" && (
+              <IconButton
+                label="Open resource"
+                disabled={!resource.url}
+                onClick={() => resource.url && window.open(resource.url, "_blank")}
+              >
+                <Link2 size={17} />
+              </IconButton>
+            )}
+            <IconButton label="Rename" onClick={rename}>
+              <Pencil size={17} />
+            </IconButton>
+            <IconButton label="Delete" onClick={() => onDelete(resource.id)}>
+              <Trash2 size={17} />
+            </IconButton>
+          </div>
+        </div>
+      </div>
+      {resource.type === "FOLDER" && isOpen && (
+        <ResourceTree
+          resources={resources}
+          parentId={resource.id}
+          depth={depth + 1}
+          onAddFile={onAddFile}
+          onAddFolderUpload={onAddFolderUpload}
+          onAddFolder={onAddFolder}
+          onDelete={onDelete}
+          onSave={onSave}
+        />
+      )}
+    </div>
+  );
+}
+
 function ResourceTree({
   resources,
   parentId,
@@ -1564,95 +1690,25 @@ function ResourceTree({
   onDelete: (id: number) => void;
   onSave: (resource: Omit<PlacementResource, "id"> & { id?: number }) => void;
 }) {
-  const children = resources.filter(
-    (resource) => resource.parentId === parentId,
-  );
-  function rename(resource: PlacementResource) {
-    const title = window.prompt("Rename resource", resource.title);
-    if (title?.trim()) {
-      onSave({ ...resource, title: title.trim() });
-    }
-  }
+  const children = resources.filter((resource) => resource.parentId === parentId);
 
   return (
     <>
       {children.map((resource) => (
-        <div key={resource.id} className="space-y-3">
-          <div
-            className="rounded-lg border border-white/10 bg-panel p-4"
-            style={{ marginLeft: `${Math.min(depth * 24, 96)}px` }}
-          >
-            <div className="flex items-start justify-between gap-3">
-              <div className="flex min-w-0 items-center gap-3">
-                {resource.type === "FOLDER" ? (
-                  <Folder className="text-amber" size={18} />
-                ) : (
-                  <FileText className="text-mint" size={18} />
-                )}
-                <h3 className="min-w-0 break-words font-semibold text-white">
-                  {resource.title}
-                </h3>
-              </div>
-              <div className="flex shrink-0 flex-wrap justify-end gap-2">
-                {resource.type === "FOLDER" && (
-                  <>
-                    <IconButton
-                      label="Add file in folder"
-                      onClick={() => onAddFile(resource.id)}
-                    >
-                      <Plus size={17} />
-                    </IconButton>
-                    <IconButton
-                      label="Upload folder inside"
-                      onClick={() => onAddFolderUpload(resource.id)}
-                    >
-                      <Folder size={17} />
-                    </IconButton>
-                    <IconButton
-                      label="New folder inside"
-                      onClick={() => onAddFolder(resource.id)}
-                    >
-                      <Folder size={17} />
-                    </IconButton>
-                  </>
-                )}
-                {resource.type === "RESOURCE" && (
-                  <IconButton
-                    label="Open resource"
-                    disabled={!resource.url}
-                    onClick={() =>
-                      resource.url && window.open(resource.url, "_blank")
-                    }
-                  >
-                    <Link2 size={17} />
-                  </IconButton>
-                )}
-                <IconButton label="Rename" onClick={() => rename(resource)}>
-                  <Pencil size={17} />
-                </IconButton>
-                <IconButton
-                  label="Delete"
-                  onClick={() => onDelete(resource.id)}
-                >
-                  <Trash2 size={17} />
-                </IconButton>
-              </div>
-            </div>
-          </div>
-          {resource.type === "FOLDER" && (
-            <ResourceTree
-              resources={resources}
-              parentId={resource.id}
-              depth={depth + 1}
-              onAddFile={onAddFile}
-              onAddFolderUpload={onAddFolderUpload}
-              onAddFolder={onAddFolder}
-              onDelete={onDelete}
-              onSave={onSave}
-            />
-          )}
-        </div>
+        <ResourceNode
+          key={resource.id}
+          resource={resource}
+          resources={resources}
+          depth={depth}
+          onAddFile={onAddFile}
+          onAddFolderUpload={onAddFolderUpload}
+          onAddFolder={onAddFolder}
+          onDelete={onDelete}
+          onSave={onSave}
+        />
       ))}
     </>
   );
 }
+
+
