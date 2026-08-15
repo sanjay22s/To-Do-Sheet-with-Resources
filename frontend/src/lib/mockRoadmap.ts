@@ -456,6 +456,59 @@ const backtrackingProblems = [
   },
 ];
 
+const stackProblems = [
+  {
+    title: "Valid Parentheses",
+    difficulty: "Easy",
+    leetcodeUrl: "https://leetcode.com/problems/valid-parentheses/",
+  },
+  {
+    title: "Min Stack",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/min-stack/",
+  },
+  {
+    title: "Next Greater Element I",
+    difficulty: "Easy",
+    leetcodeUrl: "https://leetcode.com/problems/next-greater-element-i/",
+  },
+  {
+    title: "Daily Temperatures",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/daily-temperatures/",
+  },
+  {
+    title: "Largest Rectangle in Histogram",
+    difficulty: "Hard",
+    leetcodeUrl: "https://leetcode.com/problems/largest-rectangle-in-histogram/",
+  },
+  {
+    title: "Simplify Path",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/simplify-path/",
+  },
+  {
+    title: "Decode String",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/decode-string/",
+  },
+  {
+    title: "Implement Queue using Stacks",
+    difficulty: "Easy",
+    leetcodeUrl: "https://leetcode.com/problems/implement-queue-using-stacks/",
+  },
+  {
+    title: "Evaluate Reverse Polish Notation",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/evaluate-reverse-polish-notation/",
+  },
+  {
+    title: "Online Stock Span",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/online-stock-span/",
+  },
+];
+
 const dsaProblemSeeds: Record<string, typeof arraysProblems> = {
   Arrays: arraysProblems,
   "2D Arrays": twoDArrayProblems,
@@ -465,6 +518,7 @@ const dsaProblemSeeds: Record<string, typeof arraysProblems> = {
   Greedy: greedyProblems,
   "Dynamic Programming": dpProblems,
   "Recursion / Backtracking": backtrackingProblems,
+  Stack: stackProblems,
 };
 
 const sections = [
