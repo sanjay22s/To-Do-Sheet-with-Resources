@@ -138,9 +138,63 @@ const twoDArrayProblems = [
   },
 ];
 
+const heapProblems = [
+  {
+    title: "Shortest Subarray with Sum at Least K",
+    difficulty: "Hard",
+    leetcodeUrl: "https://leetcode.com/problems/shortest-subarray-with-sum-at-least-k/",
+  },
+  {
+    title: "Kth Largest Element in a Stream",
+    difficulty: "Easy",
+    leetcodeUrl: "https://leetcode.com/problems/kth-largest-element-in-a-stream/",
+  },
+  {
+    title: "Last Stone Weight",
+    difficulty: "Easy",
+    leetcodeUrl: "https://leetcode.com/problems/last-stone-weight/",
+  },
+  {
+    title: "Kth Largest Element in an Array",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/kth-largest-element-in-an-array/",
+  },
+  {
+    title: "K Closest Points to Origin",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/k-closest-points-to-origin/",
+  },
+  {
+    title: "Top K Frequent Words",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/top-k-frequent-words/",
+  },
+  {
+    title: "Merge k Sorted Lists",
+    difficulty: "Hard",
+    leetcodeUrl: "https://leetcode.com/problems/merge-k-sorted-lists/",
+  },
+  {
+    title: "Find Median from Data Stream",
+    difficulty: "Hard",
+    leetcodeUrl: "https://leetcode.com/problems/find-median-from-data-stream/",
+  },
+  {
+    title: "Find K Pairs with Smallest Sums",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/find-k-pairs-with-smallest-sums/",
+  },
+  {
+    title: "Task Scheduler",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/task-scheduler/",
+  },
+];
+
 const dsaProblemSeeds: Record<string, typeof arraysProblems> = {
   Arrays: arraysProblems,
   "2D Arrays": twoDArrayProblems,
+  "Heap / Priority Queue": heapProblems,
 };
 
 const sections = [
