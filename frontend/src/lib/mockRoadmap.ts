@@ -992,7 +992,26 @@ function normalizeDsaCategory(category: Category): Category {
     };
   });
 
-  return normalizedCategory;
+  const orderedTopics: Record<string, typeof items> = {};
+  dsaTopics.forEach((topic) => {
+    if (normalizedCategory.topics[topic]) {
+      orderedTopics[topic] = normalizedCategory.topics[topic];
+    } else {
+      orderedTopics[topic] = normalizedCategory.items.filter((item) => item.topic === topic);
+    }
+  });
+
+  // Keep any extra custom topics at the end
+  Object.keys(normalizedCategory.topics).forEach((topic) => {
+    if (!orderedTopics[topic]) {
+      orderedTopics[topic] = normalizedCategory.topics[topic];
+    }
+  });
+
+  return {
+    ...normalizedCategory,
+    topics: orderedTopics,
+  };
 }
 
 export function recalculate(roadmap: RoadmapResponse): RoadmapResponse {
