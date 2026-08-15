@@ -31,6 +31,7 @@ import {
   type CloudCredentials,
   fetchFromCloud,
   saveToCloud,
+  fileToBase64,
 } from "./lib/cloudSync";
 import {
   DUMMY_LEETCODE_URL,
@@ -1440,33 +1441,45 @@ function ResourcesSection({
     folderInputRef.current?.click();
   }
 
-  function addFiles(event: ChangeEvent<HTMLInputElement>) {
+  async function addFiles(event: ChangeEvent<HTMLInputElement>) {
     const parentId = pendingFileParentId.current;
-    Array.from(event.target.files ?? []).forEach((file) => {
-      onSave({
-        title: file.name,
-        url: URL.createObjectURL(file),
-        type: "RESOURCE",
-        parentId,
-      });
-    });
+    const files = Array.from(event.target.files ?? []);
+    for (const file of files) {
+      try {
+        const url = await fileToBase64(file);
+        onSave({
+          title: file.name,
+          url,
+          type: "RESOURCE",
+          parentId,
+        });
+      } catch {
+        alert(`Failed to read file: ${file.name}`);
+      }
+    }
     pendingFileParentId.current = null;
     event.target.value = "";
   }
 
-  function addFolderFiles(event: ChangeEvent<HTMLInputElement>) {
+  async function addFolderFiles(event: ChangeEvent<HTMLInputElement>) {
     const parentId = pendingFolderParentId.current;
-    Array.from(event.target.files ?? []).forEach((file) => {
+    const files = Array.from(event.target.files ?? []);
+    for (const file of files) {
       const relativePath = file.webkitRelativePath || file.name;
       const parts = relativePath.split("/").filter(Boolean);
       const title = parts.length > 1 ? relativePath : file.name;
-      onSave({
-        title,
-        url: URL.createObjectURL(file),
-        type: "RESOURCE",
-        parentId,
-      });
-    });
+      try {
+        const url = await fileToBase64(file);
+        onSave({
+          title,
+          url,
+          type: "RESOURCE",
+          parentId,
+        });
+      } catch {
+        alert(`Failed to read file: ${file.name}`);
+      }
+    }
     pendingFolderParentId.current = null;
     event.target.value = "";
   }

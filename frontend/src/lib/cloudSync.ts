@@ -65,3 +65,39 @@ export async function saveToCloud(creds: CloudCredentials, roadmapData: RoadmapR
   }
 }
 
+export function fileToBase64(file: File): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result as string);
+    reader.onerror = (error) => reject(error);
+  });
+}
+
+export async function uploadFileToStorage(creds: CloudCredentials, file: File): Promise<string> {
+  const supabase = supabaseInstance || initSupabase(creds.url, creds.apiKey);
+  
+  const fileExt = file.name.split('.').pop();
+  const randomId = Math.random().toString(36).substring(2, 9);
+  const fileName = `${Date.now()}-${randomId}.${fileExt}`;
+  
+  const { error } = await supabase.storage
+    .from('resources')
+    .upload(fileName, file, {
+      cacheControl: '3600',
+      upsert: false
+    });
+
+  if (error) {
+    console.error('Supabase storage upload error:', error);
+    throw new Error(error.message + '. Please ensure you have created a public bucket named "resources" in your Supabase storage.');
+  }
+
+  const { data: urlData } = supabase.storage
+    .from('resources')
+    .getPublicUrl(fileName);
+
+  return urlData.publicUrl;
+}
+
+
