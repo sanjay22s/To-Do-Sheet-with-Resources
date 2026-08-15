@@ -544,6 +544,28 @@ function Dashboard({
         </div>
       </section>
 
+      {/* LeetCode Quick Links */}
+      <section className="flex flex-wrap gap-3">
+        <a
+          href="https://leetcode.com/u/sanjay22s/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2.5 rounded-lg border border-amber/30 bg-amber/10 px-4 py-2.5 text-sm font-semibold text-amber transition hover:bg-amber/20 hover:border-amber/50 hover:shadow-[0_0_12px_rgba(251,191,36,0.2)]"
+        >
+          <SiLeetcode size={18} />
+          Profile
+        </a>
+        <a
+          href="https://leetcode.com/problem-list/debkhj95/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2.5 rounded-lg border border-amber/30 bg-amber/10 px-4 py-2.5 text-sm font-semibold text-amber transition hover:bg-amber/20 hover:border-amber/50 hover:shadow-[0_0_12px_rgba(251,191,36,0.2)]"
+        >
+          <SiLeetcode size={18} />
+          135
+        </a>
+      </section>
+
       <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
         {trackedCategories.map((category) => (
           <div
