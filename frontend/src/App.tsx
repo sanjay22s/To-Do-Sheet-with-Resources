@@ -607,32 +607,59 @@ function DsaSection({
           key={topic}
           className="overflow-hidden rounded-lg border border-white/10 bg-panel"
         >
-          <button
-            className="flex w-full items-center justify-between gap-4 px-4 py-4 text-left"
-            onClick={() => onToggleTopic(topic)}
-          >
-            <div className="flex items-center gap-3">
-              {openTopics[topic] ? (
-                <ChevronDown size={18} />
-              ) : (
-                <ChevronRight size={18} />
-              )}
-              <div>
-                <h2 className="font-semibold text-white">{topic}</h2>
+          <div className="flex w-full items-center justify-between gap-4 px-4 py-4">
+            <div className="flex min-w-0 flex-1 items-center gap-3">
+              <button
+                className="flex items-center text-slate-400 hover:text-white transition"
+                onClick={() => onToggleTopic(topic)}
+                aria-label={openTopics[topic] ? "Collapse folder" : "Expand folder"}
+              >
+                {openTopics[topic] ? (
+                  <ChevronDown size={18} />
+                ) : (
+                  <ChevronRight size={18} />
+                )}
+              </button>
+
+              <div
+                onClick={() => {
+                  if (items.length === 0) return;
+                  const allCompleted = items.length > 0 && items.every((item) => item.completed);
+                  items.forEach((item) => {
+                    if (item.completed === allCompleted) {
+                      onUpdateItem(item.id, { completed: !allCompleted });
+                    }
+                  });
+                }}
+                className={`grid h-8 w-8 shrink-0 place-items-center rounded-md border transition cursor-pointer ${
+                  items.length > 0 && items.every((item) => item.completed)
+                    ? "border-mint bg-mint text-ink"
+                    : "border-white/15 bg-white/[0.03] text-transparent hover:border-mint"
+                } ${items.length === 0 ? "cursor-not-allowed opacity-40 hover:border-white/15" : ""}`}
+                title="Mark all as completed"
+              >
+                <Check size={17} strokeWidth={3} />
+              </div>
+
+              <button
+                className="flex-1 text-left min-w-0"
+                onClick={() => onToggleTopic(topic)}
+              >
+                <h2 className="font-semibold text-white truncate">{topic}</h2>
                 <p className="text-sm text-slate-400">
                   {items.filter((item) => item.completed).length} /{" "}
                   {items.length} completed
                 </p>
-              </div>
+              </button>
             </div>
-            <span className="text-sm font-semibold text-mint">
+            <span className="text-sm font-semibold text-mint shrink-0">
               {Math.round(
                 (items.filter((item) => item.completed).length * 100) /
                   items.length,
               )}
               %
             </span>
-          </button>
+          </div>
           {openTopics[topic] && (
             <div className="border-t border-white/10">
               <div className="flex justify-end px-4 py-3">
@@ -857,28 +884,62 @@ function LearningSection({
                 className="overflow-hidden rounded-lg border border-white/10 bg-panel"
               >
                 <div className="flex w-full items-center justify-between gap-4 px-4 py-4">
-                  <button
-                    className="flex min-w-0 flex-1 items-center gap-3 text-left"
-                    onClick={() =>
-                      setOpenFolders((current) => ({
-                        ...current,
-                        [folder]: !current[folder],
-                      }))
-                    }
-                  >
-                    {openFolders[folder] ? (
-                      <ChevronDown size={18} />
-                    ) : (
-                      <ChevronRight size={18} />
-                    )}
-                    <Folder size={16} className="text-amber" />
-                    <div>
-                      <h2 className="font-semibold text-white">{folder}</h2>
-                      <p className="text-sm text-slate-400">
-                        {completed} / {items.length} completed
-                      </p>
+                  <div className="flex min-w-0 flex-1 items-center gap-3">
+                    <button
+                      className="flex items-center text-slate-400 hover:text-white transition"
+                      onClick={() =>
+                        setOpenFolders((current) => ({
+                          ...current,
+                          [folder]: !current[folder],
+                        }))
+                      }
+                      aria-label={openFolders[folder] ? "Collapse folder" : "Expand folder"}
+                    >
+                      {openFolders[folder] ? (
+                        <ChevronDown size={18} />
+                      ) : (
+                        <ChevronRight size={18} />
+                      )}
+                    </button>
+
+                    <div
+                      onClick={() => {
+                        if (items.length === 0) return;
+                        const allCompleted = items.length > 0 && items.every((item) => item.completed);
+                        items.forEach((item) => {
+                          if (item.completed === allCompleted) {
+                            onUpdateItem(item.id, { completed: !allCompleted });
+                          }
+                        });
+                      }}
+                      className={`grid h-8 w-8 shrink-0 place-items-center rounded-md border transition cursor-pointer ${
+                        items.length > 0 && items.every((item) => item.completed)
+                          ? "border-mint bg-mint text-ink"
+                          : "border-white/15 bg-white/[0.03] text-transparent hover:border-mint"
+                      } ${items.length === 0 ? "cursor-not-allowed opacity-40 hover:border-white/15" : ""}`}
+                      title="Mark all as completed"
+                    >
+                      <Check size={17} strokeWidth={3} />
                     </div>
-                  </button>
+
+                    <button
+                      className="flex-1 text-left min-w-0 flex items-center gap-3"
+                      onClick={() =>
+                        setOpenFolders((current) => ({
+                          ...current,
+                          [folder]: !current[folder],
+                        }))
+                      }
+                    >
+                      <Folder size={16} className="text-amber shrink-0" />
+                      <div className="min-w-0">
+                        <h2 className="font-semibold text-white truncate">{folder}</h2>
+                        <p className="text-sm text-slate-400">
+                          {completed} / {items.length} completed
+                        </p>
+                      </div>
+                    </button>
+                  </div>
                   <div className="flex shrink-0 items-center gap-3">
                     <span className="text-sm font-semibold text-mint">
                       {items.length === 0
@@ -1093,28 +1154,62 @@ function FolderLearningSection({
             className="overflow-hidden rounded-lg border border-white/10 bg-panel"
           >
             <div className="flex w-full items-center justify-between gap-4 px-4 py-4">
-              <button
-                className="flex min-w-0 flex-1 items-center gap-3 text-left"
-                onClick={() =>
-                  setOpenFolders((current) => ({
-                    ...current,
-                    [folder]: !current[folder],
-                  }))
-                }
-              >
-                {openFolders[folder] ? (
-                  <ChevronDown size={18} />
-                ) : (
-                  <ChevronRight size={18} />
-                )}
-                <Folder size={16} className="text-amber" />
-                <div>
-                  <h2 className="font-semibold text-white">{folder}</h2>
-                  <p className="text-sm text-slate-400">
-                    {completed} / {items.length} completed
-                  </p>
+              <div className="flex min-w-0 flex-1 items-center gap-3">
+                <button
+                  className="flex items-center text-slate-400 hover:text-white transition"
+                  onClick={() =>
+                    setOpenFolders((current) => ({
+                      ...current,
+                      [folder]: !current[folder],
+                    }))
+                  }
+                  aria-label={openFolders[folder] ? "Collapse folder" : "Expand folder"}
+                >
+                  {openFolders[folder] ? (
+                    <ChevronDown size={18} />
+                  ) : (
+                    <ChevronRight size={18} />
+                  )}
+                </button>
+
+                <div
+                  onClick={() => {
+                    if (items.length === 0) return;
+                    const allCompleted = items.length > 0 && items.every((item) => item.completed);
+                    items.forEach((item) => {
+                      if (item.completed === allCompleted) {
+                        onUpdateItem(item.id, { completed: !allCompleted });
+                      }
+                    });
+                  }}
+                  className={`grid h-8 w-8 shrink-0 place-items-center rounded-md border transition cursor-pointer ${
+                    items.length > 0 && items.every((item) => item.completed)
+                      ? "border-mint bg-mint text-ink"
+                      : "border-white/15 bg-white/[0.03] text-transparent hover:border-mint"
+                  } ${items.length === 0 ? "cursor-not-allowed opacity-40 hover:border-white/15" : ""}`}
+                  title="Mark all as completed"
+                >
+                  <Check size={17} strokeWidth={3} />
                 </div>
-              </button>
+
+                <button
+                  className="flex-1 text-left min-w-0 flex items-center gap-3"
+                  onClick={() =>
+                    setOpenFolders((current) => ({
+                      ...current,
+                      [folder]: !current[folder],
+                    }))
+                  }
+                >
+                  <Folder size={16} className="text-amber shrink-0" />
+                  <div className="min-w-0">
+                    <h2 className="font-semibold text-white truncate">{folder}</h2>
+                    <p className="text-sm text-slate-400">
+                      {completed} / {items.length} completed
+                    </p>
+                  </div>
+                </button>
+              </div>
               <div className="flex shrink-0 items-center gap-3">
                 <span className="text-sm font-semibold text-mint">
                   {items.length === 0
