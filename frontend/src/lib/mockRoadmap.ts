@@ -191,10 +191,64 @@ const heapProblems = [
   },
 ];
 
+const treesProblems = [
+  {
+    title: "Maximum Depth of Binary Tree",
+    difficulty: "Easy",
+    leetcodeUrl: "https://leetcode.com/problems/maximum-depth-of-binary-tree/",
+  },
+  {
+    title: "Same Tree",
+    difficulty: "Easy",
+    leetcodeUrl: "https://leetcode.com/problems/same-tree/",
+  },
+  {
+    title: "Invert Binary Tree",
+    difficulty: "Easy",
+    leetcodeUrl: "https://leetcode.com/problems/invert-binary-tree/",
+  },
+  {
+    title: "Symmetric Tree",
+    difficulty: "Easy",
+    leetcodeUrl: "https://leetcode.com/problems/symmetric-tree/",
+  },
+  {
+    title: "Diameter of Binary Tree",
+    difficulty: "Easy",
+    leetcodeUrl: "https://leetcode.com/problems/diameter-of-binary-tree/",
+  },
+  {
+    title: "Binary Tree Level Order Traversal",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/binary-tree-level-order-traversal/",
+  },
+  {
+    title: "Binary Tree Right Side View",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/binary-tree-right-side-view/",
+  },
+  {
+    title: "Lowest Common Ancestor of a Binary Tree",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/",
+  },
+  {
+    title: "Binary Tree Maximum Path Sum",
+    difficulty: "Hard",
+    leetcodeUrl: "https://leetcode.com/problems/binary-tree-maximum-path-sum/",
+  },
+  {
+    title: "Kth Smallest Element in a BST",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/kth-smallest-element-in-a-bst/",
+  },
+];
+
 const dsaProblemSeeds: Record<string, typeof arraysProblems> = {
   Arrays: arraysProblems,
   "2D Arrays": twoDArrayProblems,
   "Heap / Priority Queue": heapProblems,
+  Trees: treesProblems,
 };
 
 const sections = [
