@@ -403,6 +403,59 @@ const dpProblems = [
   },
 ];
 
+const backtrackingProblems = [
+  {
+    title: "Permutations",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/permutations/",
+  },
+  {
+    title: "Subsets",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/subsets/",
+  },
+  {
+    title: "Combination Sum",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/combination-sum/",
+  },
+  {
+    title: "Combination Sum II",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/combination-sum-ii/",
+  },
+  {
+    title: "Letter Combinations of a Phone Number",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/letter-combinations-of-a-phone-number/",
+  },
+  {
+    title: "Combinations",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/combinations/",
+  },
+  {
+    title: "Generate Parentheses",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/generate-parentheses/",
+  },
+  {
+    title: "Word Search",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/word-search/",
+  },
+  {
+    title: "N-Queens",
+    difficulty: "Hard",
+    leetcodeUrl: "https://leetcode.com/problems/n-queens/",
+  },
+  {
+    title: "Palindrome Partitioning",
+    difficulty: "Medium",
+    leetcodeUrl: "https://leetcode.com/problems/palindrome-partitioning/",
+  },
+];
+
 const dsaProblemSeeds: Record<string, typeof arraysProblems> = {
   Arrays: arraysProblems,
   "2D Arrays": twoDArrayProblems,
@@ -411,6 +464,7 @@ const dsaProblemSeeds: Record<string, typeof arraysProblems> = {
   Graphs: graphsProblems,
   Greedy: greedyProblems,
   "Dynamic Programming": dpProblems,
+  "Recursion / Backtracking": backtrackingProblems,
 };
 
 const sections = [
