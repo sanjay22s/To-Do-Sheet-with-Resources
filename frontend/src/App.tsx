@@ -761,6 +761,7 @@ function DsaProblemRow({
         icon="youtube"
         label="YouTube"
         value={item.youtubeUrl ?? ""}
+        isDefault={!item.youtubeUrl || item.youtubeUrl === DUMMY_YOUTUBE_URL}
         onChange={(youtubeUrl) => onUpdateItem(item.id, { youtubeUrl })}
       />
       <select
@@ -1351,26 +1352,28 @@ function LinkEditor({
   icon,
   label,
   value,
+  isDefault = false,
   onChange,
 }: {
   disabled?: boolean;
   icon: "leetcode" | "youtube";
   label: string;
   value: string;
+  isDefault?: boolean;
   onChange: (value: string) => void;
 }) {
   const Icon = icon === "leetcode" ? SiLeetcode : SiYoutube;
+  const iconColor = disabled
+    ? "text-slate-600"
+    : icon === "leetcode"
+      ? "text-amber"
+      : isDefault
+        ? "text-slate-600"
+        : "text-coral";
+
   return (
     <div className="grid min-w-0 grid-cols-[auto_1fr_auto] items-center gap-2">
-      <span
-        className={
-          disabled
-            ? "text-slate-600"
-            : icon === "leetcode"
-              ? "text-amber"
-              : "text-coral"
-        }
-      >
+      <span className={iconColor}>
         <Icon size={18} />
       </span>
       <input
@@ -1379,12 +1382,16 @@ function LinkEditor({
         value={value}
         placeholder={`${label} URL`}
         onChange={(event) => onChange(event.target.value)}
-        className="min-w-0 rounded-md border border-white/10 bg-white/[0.04] px-3 py-2 text-sm text-white outline-none disabled:cursor-not-allowed disabled:opacity-40 placeholder:text-slate-500 focus:border-mint"
+        className={`min-w-0 rounded-md border px-3 py-2 text-sm outline-none transition disabled:cursor-not-allowed disabled:opacity-40 placeholder:text-slate-500 focus:border-mint ${
+          isDefault
+            ? "border-white/5 bg-white/[0.02] text-slate-500"
+            : "border-white/10 bg-white/[0.04] text-white"
+        }`}
       />
       <IconButton
         label={`Open ${label}`}
-        disabled={disabled || !value}
-        onClick={() => value && window.open(value, "_blank")}
+        disabled={disabled || !value || isDefault}
+        onClick={() => value && !isDefault && window.open(value, "_blank")}
       >
         <Link2 size={16} />
       </IconButton>
